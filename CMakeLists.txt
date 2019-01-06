@@ -11,3 +11,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 
 install (TARGETS ${PROJECT_NAME} DESTINATION bin)
 install (FILES "resources/leaves.jpeg" DESTINATION bin)
+
+if (UNIX)
+	set(CMAKE_CXX_STANDARD_LIBRARIES "-std=c++17 -lstdc++fs")
+endif()
