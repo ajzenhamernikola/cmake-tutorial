@@ -8,13 +8,13 @@ Kako CMake funkcioniše? Sistem kojim CMake rukovodi se zasniva na datotekama č
 Napravićemo aplikaciju koja učitava JPEG fotografije u boji i od njih konstruiše crno-bele fotografije. Za ovaj zadatak ćemo koristiti neke module [biblioteke stb](https://github.com/nothings/stb/), naime `stb_image` i `stb_image_write`. Naša aplikacija će zapravo samo koristiti funkcije iz ovih biblioteka, ali poenta jeste u tome da naučimo da koristimo biblioteke "trećih lica" (engl. _third-party_) u našim aplikacijama, a ne da obrađujemo slike :) Struktura našeg projektnog direktorijuma sa opisima direktorijuma izgleda ovako:
 ```
 cmake-tutorial/						# Koren projektnog direktorijuma
-	bin/							# Izvorni kod aplikacije
-	build/							# Datoteke za prevođenje
-	resources/						# Resursi za testiranje rada aplikacije
+	bin/						# Izvorni kod aplikacije
+	build/						# Datoteke za prevođenje
+	resources/					# Resursi za testiranje rada aplikacije
 		leaves.jpeg
-	src/							# Izvorni kod aplikacije
+	src/						# Izvorni kod aplikacije
 		app.cpp
-	thirdparty/						# Izvorni kod biblioteka trećih lica
+	thirdparty/					# Izvorni kod biblioteka trećih lica
 		include/
 			stb_image.h
 			stb_image_write.h
@@ -23,7 +23,7 @@ cmake-tutorial/						# Koren projektnog direktorijuma
 			stb_image_write.cpp
 		CMakeLists.txt				# Uputstvo za kreiranje biblioteke trećih lica
 	CMakeLists.txt					# Uputstvo za kreiranje aplikacije
-	build.sh						# Skript za lakše kreiranje za Linux
+	build.sh					# Skript za lakše kreiranje za Linux
 ```
 
 Kao što vidimo, skoro sve datoteke koje se nalaze u projektnom direktorijumu sadrže ili izvorni kod ili nekakve resurse za pokretanje aplikacije. Jedine datoteke koje ne sadrže izvorni kod su dve `CMakeLists.txt` datoteke (i jedan skript za pokretanje CMake alata za Linux radi automatizacije procesa), koje nam svakako ne đubre projekat niti smetaju sa radom.
