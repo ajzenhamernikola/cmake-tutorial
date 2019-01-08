@@ -5,9 +5,7 @@ Međutim, problem koji se sada javlja jeste što je za svaki ovakav sistem za pr
 
 ## Opis C++ projekta
 
-Kako CMake funkcioniše? Sistem kojim CMake rukovodi se zasniva na datotekama čiji su nazivi `CMakeLists.txt`. Za svaki modul projekta se definiše po jedna datoteka ovog naziva u kojoj se nalaze direktive, napisane na specijalnom skript jeziku koji CMake razume, kojima se opisuje na koji način se generiše izvršni kod od izvornog koda. Ovaj skript jezik omogućava pisanje najrazličitijih direktiva, ali mi ćemo u ovom članku prikazati samo najosnovnije.
-
-Napravićemo aplikaciju koja učitava JPEG fotografije u boji i od njih konstruiše crno-bele fotografije. Za ovaj zadatak ćemo koristiti neke module [biblioteke stb](https://github.com/nothings/stb/), naime `stb_image` i `stb_image_write`. Naša aplikacija će zapravo samo koristiti funkcije iz ovih biblioteka, ali poenta jeste u tome da naučimo da koristimo biblioteke "trećih lica" (engl. _third-party_) u našim aplikacijama, a ne da obrađujemo slike :) Struktura našeg projektnog direktorijuma sa opisima direktorijuma izgleda ovako:
+Napravićemo aplikaciju koja učitava JPEG fotografije u boji i od njih konstruiše crno-bele fotografije. Za ovaj zadatak ćemo koristiti neke module [biblioteke stb](https://github.com/nothings/stb/), naime `stb_image` i `stb_image_write`. Naša aplikacija će zapravo samo koristiti funkcije iz ovih biblioteka, ali poenta jeste u tome da naučimo da povezujemo biblioteke "trećih lica" (engl. _third-party_) sa našim aplikacijama, a ne da obrađujemo slike :) Struktura našeg projektnog direktorijuma sa opisima direktorijuma izgleda ovako:
 ```
 cmake-tutorial/                 # Koren projektnog direktorijuma
     bin/                        # Izvorni kod aplikacije
@@ -29,9 +27,11 @@ cmake-tutorial/                 # Koren projektnog direktorijuma
     build.sh                    # Skript za lakše kreiranje za Linux
 ```
 
-Kao što vidimo, skoro sve datoteke koje se nalaze u projektnom direktorijumu sadrže ili izvorni kod ili nekakve resurse za pokretanje aplikacije. Jedine datoteke koje ne sadrže izvorni kod su dve `CMakeLists.txt` datoteke (i jedan skript za pokretanje CMake alata za Linux radi automatizacije procesa), koje nam svakako ne đubre projekat niti smetaju sa radom. U nastavku teksta ćemo podrazumevati Windows kao operativni sistem na kojem radimo, dok ćemo Linux specifičnosti navesti samo prvi put u zagradama. Dodatno, klikom na svaku od komandi ili promenljivih u tekstu moguće je pronaći zvaničnu dokumentaciju za datu komandu ili promenljivu.
+Kao što vidimo, skoro sve datoteke koje se nalaze u projektnom direktorijumu sadrže ili izvorni kod ili nekakve resurse za pokretanje aplikacije. Jedine datoteke koje ne sadrže izvorni kod su tri `CMakeLists.txt` datoteke (i jedan skript za pokretanje CMake alata za Linux radi automatizacije procesa), koje nam svakako ne đubre projekat niti smetaju sa radom. U nastavku teksta ćemo podrazumevati Windows kao operativni sistem na kojem radimo, dok ćemo Linux specifičnosti navesti samo prvi put u zagradama. Dodatno, klikom na svaku od komandi ili promenljivih u tekstu moguće je pronaći zvaničnu dokumentaciju za datu komandu ili promenljivu.
 
 ## Pisanje CMakeLists.txt datoteka
+
+Kako CMake funkcioniše? Sistem kojim CMake rukovodi se zasniva na datotekama čiji su nazivi `CMakeLists.txt`. Za svaki modul projekta se definiše po jedna datoteka ovog naziva u kojoj se nalaze direktive, napisane na specijalnom skript jeziku koji CMake razume, kojima se opisuje na koji način se generiše izvršni kod od izvornog koda. Ovaj skript jezik omogućava pisanje najrazličitijih direktiva, ali mi ćemo u ovom članku prikazati samo najosnovnije.
 
 Da bismo naučili kako da pišemo `CMakeLists.txt` datoteke, potrebno je da razumemo koji je naš finalni cilj za opisani projekat. Ono što želimo da uradimo jeste da: 
 - kreiramo biblioteku `stb_image.lib` (za Linux je `libstb_image.a`) od datoteka `stb_image.cpp` i `stb_image_write.cpp`
