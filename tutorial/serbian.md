@@ -184,13 +184,13 @@ endif()
 
 #### Biranje C++ standarda
 
-S obzirom da naša aplikacija koristi deo [`filesystem` standardne biblioteke jezika C++](https://en.cppreference.com/w/cpp/filesystem) koji je dostupan od verzije C++17, potrebno je da specifikujemo da želimo da koristimo upravo tu verziju standarda. Za to je potrebno postaviti odgovarajuće svojstvo za našu aplikaciju, što se može izvršiti pomoću komande [`set_property`](https://cmake.org/cmake/help/v3.10/command/set_property.html). Nakon argumenata `TARGET`, naziva aplikacije/biblioteke i `PROPERTY` sledi naziv svojstva koji želimo da postavimo, kao i odgovarajuća vrednost. Specifikacija standardna C++17 se može izvršiti na sledeći način:
+S obzirom da naša aplikacija koristi deo [`filesystem` standardne biblioteke jezika C++](https://en.cppreference.com/w/cpp/filesystem) koji je dostupan od verzije C++17, potrebno je da specifikujemo da želimo da koristimo upravo tu verziju standarda. Za to je potrebno postaviti odgovarajuće svojstvo za našu aplikaciju, što se može izvršiti pomoću komande [`set_property`](https://cmake.org/cmake/help/v3.10/command/set_property.html). Nakon argumenata `TARGET`, naziva aplikacije/biblioteke i `PROPERTY` sledi naziv svojstva koji želimo da postavimo, kao i odgovarajuća vrednost. Specifikacija standarda C++17 se može izvršiti na sledeći način:
 
 ```
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 ```
 
-Međutim, na Linux sistemu ovo nije dovoljno ukoliko se koristi `gcc` kompilator. Zbog načina na koji kompilator radi, potrebno je navesti dodatne zastavice pri kompiliranju i linkovanju aplikacije, što se može uraditi postavljanjem promenljive `CMAKE_CXX_STANDARD_LIBRARIES`:
+Međutim, na Linux sistemu ovo nije dovoljno ukoliko se koristi `gcc-8` (odnosno, `g++-8`) kompilator. Zbog načina na koji kompilator radi, potrebno je navesti dodatne zastavice pri kompiliranju i linkovanju aplikacije, što se može uraditi postavljanjem promenljive `CMAKE_CXX_STANDARD_LIBRARIES`:
 
 ```
 if (UNIX AND NOT APPLE)
@@ -212,7 +212,7 @@ Prvo je potrebno da specifikujemo koreni direktorijum projekta, odnosno, direkto
 
 ![](./cmakegui2.png)
 
-Nakon toga je potrebno odabrati dugme `Generate`. Ukoliko drugi direktorijum ne postoji, CMake će nas pitati da li želimo da ga kreiramo, za šta je potrebno odabrati opciju `Yes`:
+Nakon toga je potrebno odabrati dugme `Configure`. Ukoliko drugi direktorijum ne postoji, CMake će nas pitati da li želimo da ga kreiramo, za šta je potrebno odabrati opciju `Yes`:
 
 ![](./cmakegui3.png)
 
