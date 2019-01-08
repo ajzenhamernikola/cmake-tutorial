@@ -7,3 +7,4 @@ cd build
 cmake .. -DCMAKE_INSTALL_PREFIX="../" -G "Unix Makefiles"
 make
 make install
+cd ..
