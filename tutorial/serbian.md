@@ -9,24 +9,24 @@ Kako CMake funkcioniše? Sistem kojim CMake rukovodi se zasniva na datotekama č
 
 Napravićemo aplikaciju koja učitava JPEG fotografije u boji i od njih konstruiše crno-bele fotografije. Za ovaj zadatak ćemo koristiti neke module [biblioteke stb](https://github.com/nothings/stb/), naime `stb_image` i `stb_image_write`. Naša aplikacija će zapravo samo koristiti funkcije iz ovih biblioteka, ali poenta jeste u tome da naučimo da koristimo biblioteke "trećih lica" (engl. _third-party_) u našim aplikacijama, a ne da obrađujemo slike :) Struktura našeg projektnog direktorijuma sa opisima direktorijuma izgleda ovako:
 ```
-cmake-tutorial/						# Koren projektnog direktorijuma
-	bin/						# Izvorni kod aplikacije
-	build/						# Datoteke za prevođenje
-	resources/					# Resursi za testiranje rada aplikacije
-		leaves.jpeg
+cmake-tutorial/                 # Koren projektnog direktorijuma
+    bin/                        # Izvorni kod aplikacije
+    build/                      # Datoteke za prevođenje
+    resources/                  # Resursi za testiranje rada aplikacije
+        leaves.jpeg
         CMakeLists.txt          # Uputstvo za instaliranje resursa
-	src/						# Izvorni kod aplikacije
-		app.cpp
-	thirdparty/					# Izvorni kod biblioteka trećih lica
-		include/
-			stb_image.h
-			stb_image_write.h
-		source/
-			stb_image.cpp
-			stb_image_write.cpp
-		CMakeLists.txt				# Uputstvo za kreiranje biblioteke trećih lica
-	CMakeLists.txt					# Uputstvo za kreiranje aplikacije
-	build.sh					# Skript za lakše kreiranje za Linux
+    src/                        # Izvorni kod aplikacije
+        app.cpp
+    thirdparty/                 # Izvorni kod biblioteka trećih lica
+        include/
+            stb_image.h
+            stb_image_write.h
+        source/
+            stb_image.cpp
+            stb_image_write.cpp
+        CMakeLists.txt          # Uputstvo za kreiranje biblioteke trećih lica
+    CMakeLists.txt              # Uputstvo za kreiranje aplikacije
+    build.sh                    # Skript za lakše kreiranje za Linux
 ```
 
 Kao što vidimo, skoro sve datoteke koje se nalaze u projektnom direktorijumu sadrže ili izvorni kod ili nekakve resurse za pokretanje aplikacije. Jedine datoteke koje ne sadrže izvorni kod su dve `CMakeLists.txt` datoteke (i jedan skript za pokretanje CMake alata za Linux radi automatizacije procesa), koje nam svakako ne đubre projekat niti smetaju sa radom. U nastavku teksta ćemo podrazumevati Windows kao operativni sistem na kojem radimo, dok ćemo Linux specifičnosti navesti samo prvi put u zagradama. Dodatno, klikom na svaku od komandi ili promenljivih u tekstu moguće je pronaći zvaničnu dokumentaciju za datu komandu ili promenljivu.
@@ -52,7 +52,7 @@ Kada kreiramo bilo biblioteku, bilo aplikaciju, mi specifikujemo novi projekat k
 project(stb_image)
 ```
 
-Ova komanda proizvodi razne bočne efekte, između kojih je i kreiranje promenljive `PROJECT_NAME` koja sadrži naziv projekta koji smo prosledili, što će nam biti korisno u nastavku. Da bismo pristupili vrednosti nekoj postavljenoj promenljivoj, potrebno je naziv promenljive uokviriti između `${` i `}`, na primer:
+Ova komanda proizvodi razne bočne efekte, između kojih je i kreiranje promenljive [`PROJECT_NAME`](https://cmake.org/cmake/help/v3.10/variable/PROJECT_NAME.html) koja sadrži naziv projekta koji smo prosledili, što će nam biti korisno u nastavku. Da bismo pristupili vrednosti nekoj postavljenoj promenljivoj, potrebno je naziv promenljive uokviriti između `${` i `}`, na primer:
 
 ```
 ${PROJECT_NAME}
@@ -64,7 +64,7 @@ Nakon što smo kreirali projekat, možemo specifikovati direktorijume koji sadr�
 include_directories(include/)
 ```
 
-Sada možemo da definišemo novu biblioteku, što se vrši pozivom komande [add_library](https://cmake.org/cmake/help/v3.10/command/add_library.html). Ova komanda prima nekoliko argumenata:
+Sada možemo da definišemo novu biblioteku, što se vrši pozivom komande [`add_library`](https://cmake.org/cmake/help/v3.10/command/add_library.html). Ova komanda prima nekoliko argumenata:
 1. Naziv biblioteke koja se pravi
     - Za nas će ova vrednost biti sadržana u promenljivoj `PROJECT_NAME`. 
 1. Tip biblioteke
@@ -166,7 +166,7 @@ add_subdirectory(resources/)
 
 #### Izvršavanje određenih akcija u zavisnosti od operativnog sistema
 
-Ukoliko želimo, možemo određena pravila definisati samo za određene operativne sisteme. Na primer, neke biblioteke se na Linux sistemima pridružuju linkeru na jedan, dok se na Mac OSX sistemima pridružuju na drugi način. Da bismo ispitali koji je sistem u pitanju, možemo kombinovati pozive komandi [`if`](https://cmake.org/cmake/help/v3.10/command/if.html), [`elseif`](https://cmake.org/cmake/help/v3.10/command/if.html) i [`else`](https://cmake.org/cmake/help/v3.10/command/if.html) (potrebno je u svakom slučaju navesti i komandu [`endif`]((https://cmake.org/cmake/help/v3.10/command/if.html)) kao u narednom primeru), sa specijalnim promenljivama [`WIN32`](https://cmake.org/cmake/help/v3.10/variable/WIN32.html), [`UNIX`](https://cmake.org/cmake/help/v3.10/variable/UNIX.html) i [`APPLE`](https://cmake.org/cmake/help/v3.10/variable/APPLE.html). Na primer:
+Ukoliko želimo, možemo određena pravila definisati samo za određene operativne sisteme. Na primer, neke biblioteke se na Linux sistemima pridružuju linkeru na jedan, dok se na Mac OSX sistemima pridružuju na drugi način. Da bismo ispitali koji je sistem u pitanju, možemo kombinovati pozive komandi [`if`](https://cmake.org/cmake/help/v3.10/command/if.html), [`elseif`](https://cmake.org/cmake/help/v3.10/command/if.html) i [`else`](https://cmake.org/cmake/help/v3.10/command/if.html) (potrebno je u svakom slučaju navesti i komandu [`endif`](https://cmake.org/cmake/help/v3.10/command/if.html) kao u narednom primeru), sa specijalnim promenljivama [`WIN32`](https://cmake.org/cmake/help/v3.10/variable/WIN32.html), [`UNIX`](https://cmake.org/cmake/help/v3.10/variable/UNIX.html) i [`APPLE`](https://cmake.org/cmake/help/v3.10/variable/APPLE.html). Na primer:
 
 ```
 if(UNIX AND NOT APPLE)
@@ -184,7 +184,7 @@ endif()
 
 #### Biranje C++ standarda
 
-S obzirom da naša aplikacija koristi deo `filesystem` standardne biblioteke jezika C++ koji je dostupan od verzije C++17, potrebno je da specifikujemo da želimo da koristimo upravo tu verziju standarda. Za to je potrebno postaviti odgovarajuće svojstvo za našu aplikaciju, što se može izvršiti pomoću komande [`set_property`](https://cmake.org/cmake/help/v3.10/command/set_property.html). Nakon argumenata `TARGET`, naziva aplikacije/biblioteke i `PROPERTY` sledi naziv svojstva koji želimo da postavimo, kao i odgovarajuća vrednost. Specifikacija standardna C++17 se može izvršiti na sledeći način:
+S obzirom da naša aplikacija koristi deo [`filesystem` standardne biblioteke jezika C++](https://en.cppreference.com/w/cpp/filesystem) koji je dostupan od verzije C++17, potrebno je da specifikujemo da želimo da koristimo upravo tu verziju standarda. Za to je potrebno postaviti odgovarajuće svojstvo za našu aplikaciju, što se može izvršiti pomoću komande [`set_property`](https://cmake.org/cmake/help/v3.10/command/set_property.html). Nakon argumenata `TARGET`, naziva aplikacije/biblioteke i `PROPERTY` sledi naziv svojstva koji želimo da postavimo, kao i odgovarajuća vrednost. Specifikacija standardna C++17 se može izvršiti na sledeći način:
 
 ```
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
@@ -200,7 +200,7 @@ endif()
 
 ## Pokretanje CMake sistema
 
-Kada se CMake sistem instalira na Windows sistemu, dobija se aplikacija `cmake-gui.exe`, koja daje grafičko okruženje za komforan rad sa CMake sistemom. Na UNIX-zasnovanim sistemima ova aplikacija nije dostupna, te je potrebno raditi iz konzolne linije (naravno, postoje razni drugi grafički alati za UNIX sisteme, ali o njima neće biti reči).
+Kada se CMake sistem instalira na Windows sistemu, dobija se aplikacija `cmake-gui.exe`, koja daje grafičko okruženje za komforan rad sa CMake sistemom. Na UNIX-zasnovanim sistemima ova aplikacija nije dostupna, te je potrebno raditi iz konzolne linije (naravno, postoje razni drugi, nezvanični grafički alati za UNIX sisteme, ali o njima neće biti reči).
 
 ### Windows sistemi
 
@@ -224,7 +224,7 @@ Nakon toga završetka opcije `Generate`, možemo da vidimo izlaz iz CMake sistem
 
 ![](./cmakegui5.png)
 
-Takođe, možemo izmeniti pozdrazumevanu vrednost za promenljivu `CMAKE_INSTALL_PREFIX`:
+Takođe, možemo izmeniti pozdrazumevanu vrednost za promenljivu `CMAKE_INSTALL_PREFIX`, što će za nas biti koreni direktorijum projekta:
 
 ![](./cmakegui6.png)
 
