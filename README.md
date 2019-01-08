@@ -8,7 +8,7 @@ You can find the textual version of the tutorial under [tutorial](./tutorial/) d
 
 For Windows OS:
 
-1. [Visual Studio](https://visualstudio.microsoft.com/) 
+1. [Visual Studio 2017](https://visualstudio.microsoft.com/) 
 1. [CMake](https://cmake.org/)
 
 For Linux OS:
