@@ -220,7 +220,7 @@ Nakon toga, potrebno je da navedemo za koji sistem želimo da CMake generiše pr
 
 ![](./cmakegui4.png)
 
-Nakon toga završetka opcije `Generate`, možemo da vidimo izlaz iz CMake sistema i vidimo ukoliko je došlo do neke greške.
+Nakon toga završetka opcije `Configure`, možemo da vidimo izlaz iz CMake sistema i vidimo ukoliko je došlo do neke greške.
 
 ![](./cmakegui5.png)
 
@@ -251,6 +251,14 @@ Da bismo instalirali projekat, potrebno je da iz `Solution Explorer` prozora oda
 Ukoliko je sve prošlo kako treba, projekat je uspešno instaliran:
 
 ![](./vs5.png)
+
+Ukoliko želimo da pokrenemo aplikaciju iz Visual Studio alata umesto iz Windows Explorer ili Command Prompt aplikacija, potrebno je da postavimo projekat `app` za početni projekat. To je moguće uraditi odabiranjem projekta `app` iz `Solution Explorer` prozora, a zatim iz glavnog menija biranjem opcije `Project > Set as StartUp Project`:
+
+![](./vs6.png)
+
+Nakon toga se aplikacija pokreće biranjem dugmeta `Local Windows Debugger` ili skraćenicom `F5`. Primer izvršavanja programa je dat u nastavku:
+
+![](./cmd.png)
 
 ### UNIX sistemi (Linux slučaj)
 
