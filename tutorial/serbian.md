@@ -206,59 +206,59 @@ Kada se CMake sistem instalira na Windows sistemu, dobija se aplikacija `cmake-g
 
 Kao što smo rekli, za pokretanje CMake sistema koristićemo alat `cmake-gui.exe` koji izgleda kao na narednoj slici kada se pokrene:
 
-![](./cmakegui1.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui1.png)
 
 Prvo je potrebno da specifikujemo koreni direktorijum projekta, odnosno, direktorijum koji sadrži korenu `CMakeLists.txt` datoteku, kao i direktorijum gde želimo da se nalaze projektne datoteke koje će CMake alat generisati:
 
-![](./cmakegui2.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui2.png)
 
 Nakon toga je potrebno odabrati dugme `Configure`. Ukoliko drugi direktorijum ne postoji, CMake će nas pitati da li želimo da ga kreiramo, za šta je potrebno odabrati opciju `Yes`:
 
-![](./cmakegui3.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui3.png)
 
 Nakon toga, potrebno je da navedemo za koji sistem želimo da CMake generiše projektne datoteke. S obzirom da koristimo Visual Studio 2017 u ovom članku, odabraćemo opciju `Visual Studio 15 2017 Win64` i odabraćemo opciju `Finish`:
 
-![](./cmakegui4.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui4.png)
 
 Nakon toga završetka opcije `Configure`, možemo da vidimo izlaz iz CMake sistema i vidimo ukoliko je došlo do neke greške.
 
-![](./cmakegui5.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui5.png)
 
 Takođe, možemo izmeniti pozdrazumevanu vrednost za promenljivu `CMAKE_INSTALL_PREFIX`, što će za nas biti koreni direktorijum projekta:
 
-![](./cmakegui6.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui6.png)
 
 Nakon toga je potrebno odabrati dugme `Generate`.
 
-![](./cmakegui7.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmakegui7.png)
 
 Ukoliko je sve prošlo kako treba, biranjem dugmeta `Open Project` biće nam otvoren projekat u alatu Visual Studio 2017:
 
-![](./vs1.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/vs1.png)
 
 Sada možemo iz glavnog menija odabrati opciju `Build > Build Solution`:
 
-![](./vs2.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/vs2.png)
 
 U izlazu možemo videti ukoliko je kompiliranje prošlo uspešno:
 
-![](./vs3.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/vs3.png)
 
 Da bismo instalirali projekat, potrebno je da iz `Solution Explorer` prozora odaberemo projekat `INSTALL`, a zatim da iz glavnog menija odaberemo opciju `Build > Build INSTALL`:
 
-![](./vs4.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/vs4.png)
 
 Ukoliko je sve prošlo kako treba, projekat je uspešno instaliran:
 
-![](./vs5.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/vs5.png)
 
 Ukoliko želimo da pokrenemo aplikaciju iz Visual Studio alata umesto iz Windows Explorer ili Command Prompt aplikacija, potrebno je da postavimo projekat `app` za početni projekat. To je moguće uraditi odabiranjem projekta `app` iz `Solution Explorer` prozora, a zatim iz glavnog menija biranjem opcije `Project > Set as StartUp Project`:
 
-![](./vs6.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/vs6.png)
 
 Nakon toga se aplikacija pokreće biranjem dugmeta `Local Windows Debugger` ili skraćenicom `F5`. Primer izvršavanja programa je dat u nastavku:
 
-![](./cmd.png)
+![](https://github.com/theikeofficial/cmake-tutorial/raw/master/tutorial/cmd.png)
 
 ### UNIX sistemi (Linux slučaj)
 
